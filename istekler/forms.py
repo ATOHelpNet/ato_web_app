@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Istek, Hastane
 
+from .models import Hastane, Istek
 
 
 # Create a venue form
