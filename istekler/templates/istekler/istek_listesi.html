@@ -1,10 +1,10 @@
 {% extends 'istekler/base.html' %}
 
 {% block content %}
-	
+
 	<h1>Istekler</h1>
 	<br/>
-	
+
 {% for event in event_list %}
 {% if event.approved %}
 <div class="card">
@@ -31,13 +31,13 @@
   {% if user.is_authenticated %}
     {% if user == event.kullanici_adi %}
       <div class="card-footer text-muted">
-        
+
         <a href="{% url 'istek-guncelle' event.id %}" class="btn btn-outline-secondary btn-sm">Update Event</a>
 
         <a href="{% url 'istek-sil' event.id %}" class="btn btn-outline-danger btn-sm">Delete Event</a>
-        
+
       </div>
-    {% endif %}  
+    {% endif %}
   {% endif %}
 </div>
 
@@ -49,5 +49,5 @@
 {% endfor %}
 
 
-	
+
 {% endblock %}

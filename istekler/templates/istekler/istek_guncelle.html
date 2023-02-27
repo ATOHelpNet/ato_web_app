@@ -1,7 +1,7 @@
 {% extends 'istekler/base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}	
+{% if user.is_authenticated %}
 	{% if user == event.kullanici %}
 
         <h1>Istegi guncelle...</h1>
@@ -29,6 +29,6 @@
 	<a href="{% url 'login' %}">Login Here</a>
 {% endif %}
 
-	
-	
+
+
 {% endblock %}

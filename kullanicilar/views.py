@@ -13,8 +13,8 @@ def login_user(request):
 			login(request, user)
 			return redirect('home')
 		else:
-			messages.success(request, ("There Was An Error Logging In, Try Again..."))	
-			return redirect('login')	
+			messages.success(request, ("There Was An Error Logging In, Try Again..."))
+			return redirect('login')
 
 
 	else:
@@ -43,4 +43,3 @@ def register_user(request):
 	return render(request, 'authenticate/register_user.html', {
 		'form':form,
 		})
-

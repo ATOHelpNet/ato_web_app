@@ -22,7 +22,7 @@
 
 </div></div>
 
-	
+
 		<br/>
 		{% for event in events %}
 			<div class="card">
@@ -53,13 +53,13 @@
   {% if user.is_authenticated %}
     {% if user == event.kullanici_adi %}
       <div class="card-footer text-muted">
-        
+
         <a href="{% url 'istek_guncelle' event.id %}" class="btn btn-outline-secondary btn-sm">Update Event</a>
 
         <a href="{% url 'istek_sil' event.id %}" class="btn btn-outline-danger btn-sm">Delete Event</a>
-        
+
       </div>
-    {% endif %}  
+    {% endif %}
   {% endif %}
 </div>
 
@@ -69,11 +69,11 @@
 
 	<br/><br/>
 		{% endfor %}
-	
 
 
-	
 
-	
-	
+
+
+
+
 {% endblock %}

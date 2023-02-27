@@ -1,7 +1,7 @@
 {% extends 'istekler/base.html' %}
 
 {% block content %}
-	
+
 	<h2>İsteklerim</h2>
 	<br/>
 
@@ -31,13 +31,13 @@
   {% if user.is_authenticated %}
     {% if user == istek.kullanici_adi %}
       <div class="card-footer text-muted">
-        
+
         <a href="{% url 'istegi-guncelle' event.id %}" class="btn btn-outline-secondary btn-sm">Istegi Guncelle</a>
 
         <a href="{% url 'istegi-sil' event.id %}" class="btn btn-outline-danger btn-sm">Istegi Sil</a>
-        
+
       </div>
-    {% endif %}  
+    {% endif %}
   {% endif %}
 </div>
 
@@ -48,10 +48,10 @@
 	<br/><br/>
 
 
-		
+
 	{% endfor %}
 
-	
+
 
 
 {% endblock %}

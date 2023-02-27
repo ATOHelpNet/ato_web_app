@@ -1,11 +1,11 @@
 {% extends 'istekler/base.html' %}
 
 {% block content %}
-	
+
 <h1>Istek Goster</h1>
 
 <br/>
-	
+
 {% if istek.approved %}
 <div class="card">
   <div class="card-header">
@@ -27,7 +27,7 @@
 	<li>Attendees:<br/>
 	{% for user in event.attendees.all %}
 {{ user }}<br/>
-  
+
   {% endfor %}
 
 	</li> -->
@@ -40,13 +40,13 @@
   {% if user.is_authenticated %}
     {% if user == istek.kullanici_adi %}
       <div class="card-footer text-muted">
-        
+
         <a href="{% url 'update-istek' istek.id %}" class="btn btn-outline-secondary btn-sm">Update Istek</a>
 
         <a href="{% url 'delete-istek' istek.id %}" class="btn btn-outline-danger btn-sm">Delete Istek</a>
-        
+
       </div>
-    {% endif %}  
+    {% endif %}
   {% endif %}
 </div>
 
@@ -56,6 +56,6 @@
 {% endif %}
 
 
-	
+
 
 {% endblock %}
