@@ -1,0 +1,10 @@
+[flake8]
+extend-ignore =
+    # https://github.com/psf/black/issues/315
+    # Whitespace before ':' (E203)
+    # https://www.flake8rules.com/rules/E203.html
+    E203
+    # Line lengths are checked & managed by Black
+    # Line too long (82 &gt; 79 characters) (E501)
+    # https://www.flake8rules.com/rules/E501.html
+    E501

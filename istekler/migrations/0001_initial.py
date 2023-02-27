@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,32 +16,85 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Hastane',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=120, verbose_name='Hastane Adı')),
                 ('address', models.CharField(max_length=300)),
                 ('zip_code', models.CharField(max_length=15, verbose_name='Zip Kodu')),
-                ('phone', models.CharField(blank=True, max_length=25, verbose_name='Telefon')),
+                (
+                    'phone',
+                    models.CharField(blank=True, max_length=25, verbose_name='Telefon'),
+                ),
                 ('web', models.URLField(blank=True, verbose_name='Website')),
-                ('email_address', models.EmailField(blank=True, max_length=254, verbose_name='Email Adresi')),
+                (
+                    'email_address',
+                    models.EmailField(blank=True, max_length=254, verbose_name='Email Adresi'),
+                ),
                 ('owner', models.IntegerField(default=1, verbose_name='Venue Owner')),
-                ('venue_image', models.ImageField(blank=True, null=True, upload_to='images/')),
+                (
+                    'venue_image',
+                    models.ImageField(blank=True, null=True, upload_to='images/'),
+                ),
             ],
         ),
         migrations.CreateModel(
             name='Istek',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tibbi_malzeme_ilac_asi', models.CharField(max_length=120, verbose_name='Tibbi Malzeme / Ilac / Asi')),
-                ('kisisel_gereksinimler', models.CharField(max_length=120, verbose_name='Event Date')),
-                ('hastanenin_altyapi_gereksinimleri_sorunlari', models.TextField(blank=True)),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'tibbi_malzeme_ilac_asi',
+                    models.CharField(max_length=120, verbose_name='Tibbi Malzeme / Ilac / Asi'),
+                ),
+                (
+                    'kisisel_gereksinimler',
+                    models.CharField(max_length=120, verbose_name='Event Date'),
+                ),
+                (
+                    'hastanenin_altyapi_gereksinimleri_sorunlari',
+                    models.TextField(blank=True),
+                ),
                 ('hastanede_saglik_calisani_gereksinimi', models.TextField(blank=True)),
                 ('temel_gereksinimler', models.TextField(blank=True)),
                 ('ailevi_gereksinimler', models.TextField(blank=True)),
                 ('diger_gereksinimler', models.TextField(blank=True)),
                 ('mesaj_kutusu', models.TextField(blank=True)),
-                ('approved', models.BooleanField(default=False, verbose_name='Aprroved')),
-                ('hastane_adi', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='istekler.hastane')),
-                ('kullanici', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                (
+                    'approved',
+                    models.BooleanField(default=False, verbose_name='Aprroved'),
+                ),
+                (
+                    'hastane_adi',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to='istekler.hastane',
+                    ),
+                ),
+                (
+                    'kullanici',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
