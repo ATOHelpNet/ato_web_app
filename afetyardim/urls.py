@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('istekler.urls')),
-    path('kullanicilar/', include('django.contrib.auth.urls')),
-    path('kullanicilar/', include('kullanicilar.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("istekler.urls")),
+    path("kullanicilar/", include("django.contrib.auth.urls")),
+    path("kullanicilar/", include("kullanicilar.urls")),
 ]
 
 # Configure Admin Titles

@@ -19,7 +19,7 @@ from .models import Hastane, Istek
 # Show Event
 def show_istek(request, istek_id):
     istek = Istek.objects.get(pk=istek_id)
-    return render(request, 'istekler/show_istek.html', {"istek": istek})
+    return render(request, "istekler/show_istek.html", {"istek": istek})
 
 
 # Show Hastane Istekleri
@@ -29,10 +29,10 @@ def hastane_istekleri(request, hastane_id):
     # Grab the events from that venue
     istekler = hastane.istek_set.all()  # TODO !!!
     if istekler:
-        return render(request, 'istekler/venue_events.html', {"events": istekler})
+        return render(request, "istekler/venue_events.html", {"events": istekler})
     else:
         messages.success(request, ("That Venue Has No Events At This Time..."))
-        return redirect('admin_approval')
+        return redirect("admin_approval")
 
 
 # Create My Events Page
@@ -40,11 +40,11 @@ def isteklerim(request):
     if request.user.is_authenticated:
         # FIXME: Make use of authenticated user
         events = Istek.objects.all()
-        return render(request, 'istekler/isteklerim.html', {"events": events})
+        return render(request, "istekler/isteklerim.html", {"events": events})
 
     else:
         messages.success(request, ("You Aren't Authorized To View This Page"))
-        return redirect('home')
+        return redirect("home")
 
 
 # TODO hastane icin txt csv ve pdf olusturucular eklenecek!
@@ -60,16 +60,16 @@ def istek_ekle(request):
             istek = form.save(commit=False)
             istek.kullanici_adi = request.user  # logged in user
             istek.save()
-            return HttpResponseRedirect('/istek_ekle?submitted=True')
+            return HttpResponseRedirect("/istek_ekle?submitted=True")
     else:
         # Just Going To The Page, Not Submitting
 
         form = IstekForm
 
-        if 'submitted' in request.GET:
+        if "submitted" in request.GET:
             submitted = True
 
-    return render(request, 'istekler/istek_ekle.html', {'form': form, 'submitted': submitted})
+    return render(request, "istekler/istek_ekle.html", {"form": form, "submitted": submitted})
 
 
 def istek_guncelle(request, event_id):
@@ -78,9 +78,9 @@ def istek_guncelle(request, event_id):
 
     if form.is_valid():
         form.save()
-        return redirect('list-events')  # TODO
+        return redirect("list-events")  # TODO
 
-    return render(request, 'istekler/istek_guncelle.html', {'event': event, 'form': form})
+    return render(request, "istekler/istek_guncelle.html", {"event": event, "form": form})
 
 
 def hastane_guncelle(request, venue_id):
@@ -88,35 +88,35 @@ def hastane_guncelle(request, venue_id):
     form = HastaneForm(request.POST or None, request.FILES or None, instance=venue)
     if form.is_valid():
         form.save()
-        return redirect('list-venues')  # TODO
+        return redirect("list-venues")  # TODO
 
-    return render(request, 'istekler/hastane_guncelle.html', {'venue': venue, 'form': form})
+    return render(request, "istekler/hastane_guncelle.html", {"venue": venue, "form": form})
 
 
 def hastane_ara(request):
     if request.method == "POST":
-        searched = request.POST['searched']
+        searched = request.POST["searched"]
         venues = Hastane.objects.filter(name__contains=searched)
 
         return render(
             request,
-            'istekler/hastane_ara.html',
-            {'searched': searched, 'venues': venues},
+            "istekler/hastane_ara.html",
+            {"searched": searched, "venues": venues},
         )
     else:
-        return render(request, 'istekler/hastane_ara.html', {})
+        return render(request, "istekler/hastane_ara.html", {})
 
 
 def istek_ara(request):
     if request.method == "POST":
-        searched = request.POST['searched']
+        searched = request.POST["searched"]
         events = Istek.objects.filter(tibbi_malzeme_ilac_asi__contains=searched)
 
-        return render(request, 'istekler/istek_ara.html', {'searched': searched, 'events': events})
+        return render(request, "istekler/istek_ara.html", {"searched": searched, "events": events})
     else:
         events = Istek.objects.all()
 
-        return render(request, 'istekler/istek_ara.html', {'events': events})
+        return render(request, "istekler/istek_ara.html", {"events": events})
 
 
 def show_hastane(request, venue_id):
@@ -128,8 +128,8 @@ def show_hastane(request, venue_id):
 
     return render(
         request,
-        'istekler/show_hastane.html',
-        {'venue': venue, 'venue_owner': venue_owner, 'events': events},
+        "istekler/show_hastane.html",
+        {"venue": venue, "venue_owner": venue_owner, "events": events},
     )
 
 
@@ -139,13 +139,13 @@ def list_hastane(request):
 
     # Set up Pagination
     p = Paginator(Hastane.objects.all(), 3)
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     venues = p.get_page(page)
     nums = "a" * venues.paginator.num_pages
     return render(
         request,
-        'istekler/hastane.html',
-        {'venue_list': venue_list, 'venues': venues, 'nums': nums},
+        "istekler/hastane.html",
+        {"venue_list": venue_list, "venues": venues, "nums": nums},
     )
 
 
@@ -158,23 +158,23 @@ def hastane_ekle(request):
             venue.owner = request.user.id  # logged in user
             venue.save()
             # form.save()
-            return HttpResponseRedirect('/hastane_ekle?submitted=True')
+            return HttpResponseRedirect("/hastane_ekle?submitted=True")
     else:
         form = HastaneForm
-        if 'submitted' in request.GET:
+        if "submitted" in request.GET:
             submitted = True
 
-    return render(request, 'istekler/hastane_ekle.html', {'form': form, 'submitted': submitted})
+    return render(request, "istekler/hastane_ekle.html", {"form": form, "submitted": submitted})
 
 
 def butun_istekler(request):
     event_list = Istek.objects.all()
-    return render(request, 'istekler/istek_listesi.html', {'event_list': event_list})
+    return render(request, "istekler/istek_listesi.html", {"event_list": event_list})
 
 
 def home(request, year=None, month=None):
     year = year or datetime.now().year
-    month = month or datetime.now().strftime('%B')
+    month = month or datetime.now().strftime("%B")
 
     name = "ATO"
     # month = month.capitalize()
@@ -197,7 +197,7 @@ def home(request, year=None, month=None):
     # time = now.strftime('%I:%M %p')
     return render(
         request,
-        'istekler/home.html',
+        "istekler/home.html",
         {
             "name": name,
             # "year": year,

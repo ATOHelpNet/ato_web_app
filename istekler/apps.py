@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class IsteklerConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'istekler'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "istekler"
