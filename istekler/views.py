@@ -7,8 +7,6 @@ from django.contrib.auth.models import User
 
 # Import Pagination Stuff
 from django.core.paginator import Paginator
-
-# Import PDF Stuff
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 
