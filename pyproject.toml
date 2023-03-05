@@ -9,8 +9,6 @@ packages = [{include = "ato_web_app"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "4.1.7"
-reportlab = "3.6.12"
-
 
 [build-system]
 requires = ["poetry-core"]
